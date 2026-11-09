@@ -1,0 +1,118 @@
+CREATE TABLE produto (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    setor TEXT NOT NULL,
+    preco INTEGER NOT NULL,
+    custo INTEGER NOT NULL,
+    estoque INTEGER NOT NULL,
+    desconto INTEGER DEFAULT 0,
+    status TEXT DEFAULT 'ativo',
+    data_validade TEXT
+) STRICT;
+
+CREATE TABLE venda_item (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_produto INTEGER NOT NULL,
+    quantidade INTEGER NOT NULL CHECK (quantidade > 0),
+    data_venda TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+    FOREIGN KEY (id_produto) REFERENCES produto(id)
+) STRICT;
+
+INSERT INTO produto (nome, setor, preco, custo, estoque, desconto, status, data_validade) VALUES
+-- ==========================================
+-- SETOR: BEBIDAS
+-- ==========================================
+('Refrigerante Cola 2L', 'Bebidas', 950, 600, 150, 10, 'ativo', '2027-12-31'),
+('Cerveja Lata 350ml', 'Bebidas', 450, 300, 200, 5, 'ativo', '2026-10-15'),
+('Suco de Laranja 1L', 'Bebidas', 820, 500, 30, 0, 'inativo', '2026-06-10'),
+('Água Mineral 500ml', 'Bebidas', 250, 120, 300, 0, 'ativo', '2027-01-10'),
+('Água Mineral com Gás 500ml', 'Bebidas', 300, 150, 180, 0, 'ativo', '2027-01-10'),
+('Água Mineral 1.5L', 'Bebidas', 450, 220, 120, 0, 'ativo', '2027-03-15'),
+('Refrigerante Guaraná 2L', 'Bebidas', 900, 580, 140, 0, 'ativo', '2027-11-20'),
+('Refrigerante Limão 2L', 'Bebidas', 880, 560, 90, 0, 'inativo', '2027-10-10'),
+('Chá Gelado Pêssego 1.5L', 'Bebidas', 750, 450, 60, 0, 'ativo', '2026-08-12'),
+('Chá Gelado Limão 1.5L', 'Bebidas', 750, 450, 55, 0, 'ativo', '2026-08-12'),
+('Energetico Lata 250ml', 'Bebidas', 990, 650, 110, 15, 'ativo', '2027-05-05'),
+('Cerveja Long Neck 330ml', 'Bebidas', 720, 480, 160, 0, 'ativo', '2026-09-30'),
+('Vinho Tinto Seco 750ml', 'Bebidas', 3500, 2200, 40, 10, 'ativo', '2030-12-31'),
+('Vinho Branco Suave 750ml', 'Bebidas', 3200, 2000, 35, 0, 'inativo', '2030-12-31'),
+('Néctar de Uva 1L', 'Bebidas', 790, 490, 70, 0, 'ativo', '2026-07-20'),
+('Néctar de Pêssego 1L', 'Bebidas', 790, 490, 65, 0, 'ativo', '2026-07-20'),
+('Água de Coco 1L', 'Bebidas', 850, 550, 80, 0, 'ativo', '2026-06-15'),
+('Isotônico Uva 500ml', 'Bebidas', 650, 400, 90, 0, 'ativo', '2026-09-10'),
+('Isotônico Laranja 500ml', 'Bebidas', 650, 400, 85, 0, 'inativo', '2026-09-10'),
+('Cerveja Sem Álcool Lata', 'Bebidas', 500, 320, 70, 0, 'ativo', '2026-11-01'),
+('Café Gelado Lata', 'Bebidas', 800, 500, 45, 0, 'ativo', '2026-05-20'),
+-- ==========================================
+-- SETOR: HORTIFRUTI
+-- ==========================================
+('Tomate', 'Hortifruti', 1045, 650, 120, 0, 'ativo', '2026-03-10'),
+('Batata Inglesa (kg)', 'Hortifruti', 650, 400, 90, 0, 'ativo', '2026-03-15'),
+('Cebola (kg)', 'Hortifruti', 590, 350, 80, 0, 'ativo', '2026-03-20'),
+('Alface Crespa (un)', 'Hortifruti', 350, 180, 50, 0, 'ativo', '2026-03-08'),
+('Alface Americana (un)', 'Hortifruti', 380, 200, 40, 0, 'inativo', '2026-03-08'),
+('Cenoura (kg)', 'Hortifruti', 620, 380, 75, 0, 'ativo', '2026-03-18'),
+('Beterraba (kg)', 'Hortifruti', 550, 320, 60, 0, 'ativo', '2026-03-18'),
+('Banana Nanica (kg)', 'Hortifruti', 780, 480, 110, 0, 'ativo', '2026-03-12'),
+('Banana Prata (kg)', 'Hortifruti', 850, 520, 95, 0, 'ativo', '2026-03-12'),
+('Maçã Gala (kg)', 'Hortifruti', 1190, 750, 100, 5, 'ativo', '2026-03-25'),
+('Maçã Fuji (kg)', 'Hortifruti', 1250, 800, 85, 0, 'inativo', '2026-03-25'),
+('Laranja Pera (kg)', 'Hortifruti', 490, 290, 150, 0, 'ativo', '2026-03-20'),
+('Limão Siciliano (kg)', 'Hortifruti', 1490, 950, 40, 0, 'ativo', '2026-03-30'),
+('Limão Tahiti (kg)', 'Hortifruti', 590, 350, 130, 0, 'ativo', '2026-03-30'),
+('Mamão Formosa (kg)', 'Hortifruti', 790, 480, 50, 0, 'inativo', '2026-03-14'),
+('Melancia (kg)', 'Hortifruti', 390, 220, 30, 0, 'ativo', '2026-03-15'),
+('Abacaxi Pérola (un)', 'Hortifruti', 750, 450, 45, 0, 'ativo', '2026-03-22'),
+('Manga Palmer (kg)', 'Hortifruti', 890, 550, 60, 0, 'ativo', '2026-03-16'),
+('Abacate Manteiga (kg)', 'Hortifruti', 990, 620, 35, 0, 'ativo', '2026-03-14'),
+('Pepino Japonês (kg)', 'Hortifruti', 690, 410, 50, 0, 'ativo', '2026-03-12'),
+('Pimentão Amarelo (kg)', 'Hortifruti', 1290, 800, 40, 0, 'inativo', '2026-03-15'),
+('Pimentão Vermelho (kg)', 'Hortifruti', 1190, 750, 45, 0, 'ativo', '2026-03-15'),
+-- ==========================================
+-- SETOR: LATICÍNIOS
+-- ==========================================
+('Leite Integral 1L', 'Laticínios', 580, 420, 100, 0, 'ativo', '2026-03-05'),
+('Queijo Mussarela (kg)', 'Laticínios', 3890, 2800, 50, 15, 'ativo', '2026-04-01'),
+('Iogurte Natural', 'Laticínios', 450, 300, 60, 0, 'ativo', '2026-03-12'),
+('Leite Desnatado 1L', 'Laticínios', 590, 430, 80, 0, 'ativo', '2026-03-05'),
+('Leite Semidesnatado 1L', 'Laticínios', 580, 420, 70, 0, 'inativo', '2026-03-05'),
+('Manteiga com Sal 200g', 'Laticínios', 980, 700, 90, 0, 'ativo', '2026-05-10'),
+('Manteiga sem Sal 200g', 'Laticínios', 980, 700, 60, 0, 'ativo', '2026-05-10'),
+('Requeijão Cremoso 200g', 'Laticínios', 850, 580, 75, 0, 'ativo', '2026-04-15'),
+('Queijo Prato (kg)', 'Laticínios', 4190, 3000, 45, 0, 'ativo', '2026-04-01'),
+('Queijo Minas Frescal (kg)', 'Laticínios', 3500, 2500, 30, 0, 'inativo', '2026-03-20'),
+('Queijo Coalho Espeto', 'Laticínios', 1250, 850, 40, 0, 'ativo', '2026-04-10'),
+('Iogurte Morango Garrafa 1L', 'Laticínios', 990, 680, 50, 0, 'ativo', '2026-03-25'),
+('Iogurte Vitamina Garrafa 1L', 'Laticínios', 990, 680, 45, 0, 'ativo', '2026-03-25'),
+('Iogurte Grego Tradicional', 'Laticínios', 350, 210, 110, 0, 'ativo', '2026-03-20'),
+('Bebida Láctea Chocolate 200ml', 'Laticínios', 320, 190, 130, 0, 'inativo', '2026-04-05'),
+('Creme de Leite 200g', 'Laticínios', 420, 280, 140, 0, 'ativo', '2026-10-10'),
+('Leite Condensado 395g', 'Laticínios', 650, 450, 160, 0, 'ativo', '2026-12-15'),
+('Nata 300g', 'Laticínios', 890, 600, 35, 0, 'ativo', '2026-03-18'),
+('Queijo Parmesão Peça (kg)', 'Laticínios', 6990, 5000, 25, 5, 'ativo', '2026-08-01'),
+('Queijo Gorgonzola (kg)', 'Laticínios', 5990, 4200, 20, 0, 'inativo', '2026-04-12'),
+('Leite Fermentado Bandeja', 'Laticínios', 750, 500, 70, 0, 'ativo', '2026-03-15'),
+-- ==========================================
+-- SETOR: LIMPEZA
+-- ==========================================
+('Vassoura Piassava', 'Limpeza', 1500, 900, 15, 0, 'inativo', NULL),
+('Água Sanitária 2L', 'Limpeza', 750, 450, 40, 0, 'ativo', NULL),
+('Desinfetante Pinheiro 500ml', 'Limpeza', 600, 380, 60, 0, 'ativo', NULL),
+('Sabão em Pó 1kg', 'Limpeza', 1150, 800, 85, 0, 'ativo', NULL),
+('Detergente Líquido 500ml', 'Limpeza', 250, 150, 200, 0, 'ativo', NULL),
+('Esponja de Aço (pacote)', 'Limpeza', 350, 200, 120, 0, 'ativo', NULL),
+('Esponja Multiuso (un)', 'Limpeza', 180, 90, 150, 0, 'ativo', NULL),
+('Amaciante de Roupas 2L', 'Limpeza', 1290, 850, 70, 5, 'ativo', NULL),
+('Limpador Multiuso 500ml', 'Limpeza', 650, 400, 90, 0, 'ativo', NULL),
+('Limpa Vidros 500ml', 'Limpeza', 890, 550, 50, 0, 'inativo', NULL),
+('Sabão em Barra (pct c/5)', 'Limpeza', 850, 580, 100, 0, 'ativo', NULL),
+('Flanela de Microfibra', 'Limpeza', 450, 250, 80, 0, 'ativo', NULL),
+('Luva de Látex (par)', 'Limpeza', 600, 350, 60, 0, 'ativo', NULL),
+('Saco de Lixo 50L (pct)', 'Limpeza', 1490, 980, 70, 0, 'ativo', NULL),
+('Saco de Lixo 100L (pct)', 'Limpeza', 1890, 1250, 50, 0, 'inativo', NULL),
+('Pá de Lixo Plástica', 'Limpeza', 700, 400, 30, 0, 'ativo', NULL),
+('Rodo de Chão 40cm', 'Limpeza', 1200, 750, 40, 0, 'ativo', NULL),
+('Limpa Alumínio 500ml', 'Limpeza', 550, 320, 60, 0, 'ativo', NULL),
+('Inseticida Aerossol 300ml', 'Limpeza', 1690, 1100, 55, 10, 'ativo', NULL),
+('Pedra Sanitária Cestinho', 'Limpeza', 390, 210, 95, 0, 'inativo', NULL),
+('Cera Líquida Incolor 750ml', 'Limpeza', 1550, 1000, 35, 0, 'ativo', NULL);
